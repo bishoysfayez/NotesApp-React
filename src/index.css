@@ -1,0 +1,67 @@
+/* resetting  */
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: 0;
+}
+
+body{
+  background: #00DBDE;
+  background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100% );
+  /* height: 100vh; */
+}
+ /* -- colors --  */
+
+.display-1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman';
+  color: #eae2ff;
+}
+input{
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  background: #4158D0;
+  background-image: linear-gradient(43deg, #c4eeff 26%, #ff61d5 100% );
+  color: black;
+  border-radius: 50px;
+  border: 1px solid white;
+}
+button{
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  background: #4158D0;
+  background-image: linear-gradient(43deg, #C850C0 46%, #ff70db71 100% );
+  color: white;
+  border: 1px solid white;
+}
+
+.mainContainer{
+  border-radius: 20px;
+  background-image: linear-gradient(to  right, #110255 13%, #31495c8e 100% );
+  padding: 1rem;
+  min-width: 400px;
+  min-height: 70vh;
+}
+.noteContainer{
+  color: black;
+  background-color: #f2b238;
+  padding: auto;
+  margin: auto;
+}
+.btnContainer{
+  visibility: hidden;
+  transition: visibility 1s;
+}
+.btnContainer i{
+  font-size: 1.5rem;
+
+}
+.noteContainer:hover .btnContainer{
+  visibility: visible!important;
+}
+.noteContainer .btnContainer i:hover{
+  color: brown;
+}
+.done{
+  background-color:rgba(200,200,200,0.4)!important;
+}
