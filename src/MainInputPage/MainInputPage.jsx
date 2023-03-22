@@ -194,9 +194,18 @@ const postEditedNote = function (){
 
             </div>
 
+
+            <br />
+            
+        
+
         </div>
 
-
+        <footer>
+            <div className="text-center p-3" >
+                © 2023 Copyright: Bishoy S. Fayez bishoysfayez@gmail.com
+            </div>
+        </footer>
 
        
 
