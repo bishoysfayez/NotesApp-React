@@ -7,7 +7,7 @@ import MainInputPage from './MainInputPage/MainInputPage';
 function App() {
   return (
   <>
-    jjj
+    
     <MainInputPage/>
   </>
   
