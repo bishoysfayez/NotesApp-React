@@ -26,13 +26,22 @@ input{
   border-radius: 50px;
   border: 1px solid white;
 }
-button{
+.addNoteBtn{
   padding: 0.5rem;
-  font-size: 1.5rem;
   background: #4158D0;
   background-image: linear-gradient(43deg, #C850C0 46%, #ff70db71 100% );
   color: white;
   border: 1px solid white;
+  font-size: 1.2rem;
+}
+.editNoteBtn{
+  padding: 0.5rem;
+  background: #4158D0;
+  background-image: linear-gradient(43deg, #1a17eb 46%, #b3b2f0 100% );
+  color: white;
+  border: 1px solid white;
+  font-size: 1.2rem;
+
 }
 
 .mainContainer{
@@ -47,21 +56,25 @@ button{
   background-color: #f2b238;
   padding: auto;
   margin: auto;
+  word-wrap: break-word;
 }
 .btnContainer{
-  visibility: hidden;
-  transition: visibility 1s;
+
+  margin: auto;
 }
 .btnContainer i{
   font-size: 1.5rem;
+  margin: 0.5rem;
 
 }
-.noteContainer:hover .btnContainer{
-  visibility: visible!important;
-}
+
 .noteContainer .btnContainer i:hover{
   color: brown;
 }
 .done{
   background-color:rgba(200,200,200,0.4)!important;
+}
+.selectedForEdit{
+  background-color: #25fffff8;
+  color: white;
 }
