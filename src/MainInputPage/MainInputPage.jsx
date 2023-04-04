@@ -1,13 +1,37 @@
 import React from 'react'
 import { useState } from 'react'
 import Note from '../Note/Note.jsx'
+import Modal from '../Modal/Modal.jsx';
+
+
+
 export default function MainInputPage (){
 
     let notes = localStorage.getItem("notes") ? JSON.parse(localStorage.getItem("notes")) : [];
+    let [filterHandler, setFilterHandler] = useState("")
+    let [postedNotes, setPostedNotes] = useState(notes);
+    const [showModal, setShowModal] = useState(false)
 
-    let [postedNotes, setPostedNotes] = useState(notes)
+    //let noteRef = useRef(null);
 
 
+
+    const closeModal = ()=>{
+      setShowModal(false)
+    }
+  
+
+// input filter handler 
+
+const filterHandlerFunction = (e)=>{
+    setFilterHandler(e.target.value);
+    console.log(filterHandler)
+}
+
+const filteredNotes = notes.filter((element)=>{
+    return (element.noteBody.toLowerCase().includes(filterHandler.toLowerCase()))
+})
+console.log(filteredNotes)
     // marking done function 
 
     const markDone = function (itemID){
@@ -64,12 +88,7 @@ export default function MainInputPage (){
         let savedPostedNotes = JSON.stringify(copiedNotes)
         localStorage.setItem ("notes" ,savedPostedNotes);
     }
-  
-
-
-
-
-  // adding new note Note
+    // adding new note Note
 
   let addNote = function(){
     if(document.getElementById('todoInput').value){
@@ -84,14 +103,12 @@ export default function MainInputPage (){
         let savedPostedNotes = JSON.stringify(copiedNotes)
         localStorage.setItem ("notes" ,savedPostedNotes);
     } else {
-        window.alert('empty note ignored - please add note')
+        //window.alert('empty note ignored - please add note')
+        // turnModalOn()
+        setShowModal(true);
     }
     document.getElementById('todoInput').value = '';
-
-  
-
 }
-
 // editing note
 
 const editNote = function (itemID){
@@ -128,9 +145,6 @@ const editNote = function (itemID){
      // hiding the Add btn 
      document.querySelector('.addNoteBtn').classList.add('d-none');
      document.querySelector('.editNoteBtn').classList.remove('d-none');
-
-     
-
 };
 
 
@@ -145,7 +159,6 @@ const postEditedNote = function (){
             copiedNotes[i].toBeEdited = false;
         }
     }
-
     // hiding the edit btn 
     document.querySelector('.addNoteBtn').classList.remove('d-none');
     document.querySelector('.editNoteBtn').classList.add('d-none');
@@ -153,9 +166,7 @@ const postEditedNote = function (){
     let notesNodeList = document.querySelectorAll('.noteContainer')
     for (let i = 0; i < notesNodeList.length; i++){
         notesNodeList[i].classList.remove('selectedForEdit');
-
     }
-    
     // set state
     setPostedNotes(copiedNotes);
     // update local storage
@@ -165,15 +176,11 @@ const postEditedNote = function (){
     document.getElementById('todoInput').value = '';
     
 }
-
-
-
-
     return(
         <>
         <h1 className="display-1 text-center mx-auto mb-4 font-bold" >The Epic Note App</h1>
         <div className="mainContainer container d-flex flex-column w-50">
-
+            <input type="text" placeholder='filter by name' onChange={filterHandlerFunction} value={filterHandler} name="" id="" />
             <div className="row m-1 align-items-between justify-content-between">
                 <div className="col-md-9 p-0">
                   <input className='w-100 my-2' type="text" name="todoInput" id="todoInput" placeholder='Type Your Task Here'/>
@@ -185,20 +192,20 @@ const postEditedNote = function (){
             </div>
 
             <div className="notesContainer container-fluid d-flex flex-column-reverse align-items-center justify-content-center px-0 py-3 my-4">
-                {postedNotes.map((element)=>{
+                {filterHandler.length===0 ?      
+                postedNotes.map((element)=>{
                 return  <Note isDone = {element.isDone} body={element.noteBody} id={element.id} key={element.id} deleteNote = {()=>deleteNote(element.id)} markDone = {()=>{markDone(element.id)}} editNote = {()=>{editNote(element.id)}} /> 
+                  })  : 
+                filteredNotes.map((element)=> {
+                    return  <Note isDone = {element.isDone} body={element.noteBody} id={element.id} key={element.id} deleteNote = {()=>deleteNote(element.id)} markDone = {()=>{markDone(element.id)}} editNote = {()=>{editNote(element.id)}} /> 
 
-            })}
-            
-
-
+                })} 
+                
+        
             </div>
 
-
             <br />
-            
-        
-
+   
         </div>
 
         <footer>
@@ -206,8 +213,7 @@ const postEditedNote = function (){
                 © 2023 Copyright: Bishoy S. Fayez bishoysfayez@gmail.com
             </div>
         </footer>
-
-       
+        <Modal show = {showModal} close={closeModal} />
 
     </>
     )

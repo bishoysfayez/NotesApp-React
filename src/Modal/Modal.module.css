@@ -1,0 +1,27 @@
+
+
+.modalDiv{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 999;
+    
+}
+.modalDiv .modalContent{
+    padding: 1rem;
+    text-align: center;
+    width: 30%;
+    max-width: 300px;
+    align-self: center;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modalIcon{
+    position: relative;
+    cursor: pointer;
+}
