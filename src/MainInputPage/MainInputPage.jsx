@@ -106,8 +106,11 @@ console.log(filteredNotes)
         //window.alert('empty note ignored - please add note')
         // turnModalOn()
         setShowModal(true);
+
     }
     document.getElementById('todoInput').value = '';
+    setFilterHandler("");
+    document.getElementById('filterInput').value='hi';
 }
 // editing note
 
@@ -180,7 +183,7 @@ const postEditedNote = function (){
         <>
         <h1 className="display-1 text-center mx-auto mb-4 font-bold" >The Epic Note App</h1>
         <div className="mainContainer container d-flex flex-column w-50">
-            <input type="text" placeholder='filter by name' onChange={filterHandlerFunction} value={filterHandler} name="" id="" />
+            <input type="text" placeholder='filter by name' id="filterInput" onChange={filterHandlerFunction} value={filterHandler} name="" id="" />
             <div className="row m-1 align-items-between justify-content-between">
                 <div className="col-md-9 p-0">
                   <input className='w-100 my-2' type="text" name="todoInput" id="todoInput" placeholder='Type Your Task Here'/>
